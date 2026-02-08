@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Nov 25 22:54:49 2025
+# Process ID: 21216
+# Current directory: C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_axi_rt_0_0_synth_1
+# Command line: vivado.exe -log design_1_axi_rt_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_axi_rt_0_0.tcl
+# Log file: C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_axi_rt_0_0_synth_1/design_1_axi_rt_0_0.vds
+# Journal file: C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_axi_rt_0_0_synth_1\vivado.jou
+# Running On        :LAPTOP-PANIECHO
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26100
+# Processor Detail  :AMD Ryzen 3 7330U with Radeon Graphics         
+# CPU Frequency     :2296 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :7885 MB
+# Swap memory       :23372 MB
+# Total Virtual     :31257 MB
+# Available Virtual :6305 MB
+#-----------------------------------------------------------
+source design_1_axi_rt_0_0.tcl -notrace

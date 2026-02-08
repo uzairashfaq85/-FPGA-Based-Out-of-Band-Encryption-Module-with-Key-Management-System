@@ -1,0 +1,181 @@
+#include <stdio.h>
+#include "platform.h"
+#include "xil_printf.h"
+#include "xil_types.h"
+#include "xparameters.h"
+#include "xscutimer.h"
+
+/* ================= AES BASE ADDRESSES ================= */
+#define AES_DATA_BASEADDR     0x43C10000
+#define AES_INV_DATA_BASEADDR 0x43C20000
+
+volatile u32 *ptr_aes     = (u32 *)AES_DATA_BASEADDR;
+volatile u32 *ptr_inv_aes = (u32 *)AES_INV_DATA_BASEADDR;
+
+/* ================= TIMER ================= */
+#define TIMER_LOAD_VALUE 0x00FFFFFF
+
+XScuTimer Timer;
+XScuTimer_Config *TimerCfg;
+
+/* ================= BUFFERS ================= */
+unsigned int ciphertext[4];
+unsigned int decr_plaintext[4];
+
+static char output_mode = 'H';   /* default HEX */
+
+/* ================= UART HELPERS ================= */
+static char uart_getc(void)
+{
+    return (char)inbyte();
+}
+
+static int hex_to_nibble(char c)
+{
+    if (c >= '0' && c <= '9') return c - '0';
+    if (c >= 'a' && c <= 'f') return c - 'a' + 10;
+    if (c >= 'A' && c <= 'F') return c - 'A' + 10;
+    return 0;
+}
+
+static u32 uart_read_u32_hex(void)
+{
+    u32 value = 0;
+    char c;
+
+    for (int i = 0; i < 8; i++) {
+        c = uart_getc();
+        while (c == '\r' || c == '\n' || c == ' ') c = uart_getc();
+        value = (value << 4) | hex_to_nibble(c);
+    }
+    return value;
+}
+
+static void print_ascii_from_u32(u32 word)
+{
+    for (int b = 3; b >= 0; b--) {
+        char c = (word >> (8 * b)) & 0xFF;
+        xil_printf((c >= 32 && c <= 126) ? "%c" : ".");
+    }
+}
+
+/* ================= MAIN ================= */
+int main()
+{
+    unsigned int key[8];
+    unsigned int pt[4];
+    unsigned int ct[4];
+
+    init_platform();
+
+    xil_printf("Zybo Z7-20 AES Timing Test\r\n");
+
+    /* ===== TIMER INITIALIZATION ===== */
+    TimerCfg = XScuTimer_LookupConfig(XPAR_SCUTIMER_BASEADDR);
+    if (!TimerCfg) {
+        xil_printf("Timer config not found!\r\n");
+        return -1;
+    }
+
+    XScuTimer_CfgInitialize(&Timer, TimerCfg, TimerCfg->BaseAddr);
+    XScuTimer_DisableAutoReload(&Timer);
+
+    /* ===== MAIN LOOP ===== */
+    while (1)
+    {
+        char opcode = uart_getc();
+
+        switch (opcode)
+        {
+        /* ================= LOAD KEY ================= */
+        case 'K':
+            for (int i = 0; i < 8; i++)
+                key[i] = uart_read_u32_hex();
+
+            for (int i = 0; i < 8; i++)
+                ptr_aes[4 + i] = key[i];
+
+            xil_printf("ACK_KEY\r\n");
+            break;
+
+        /* ================= ENCRYPT + TIME ================= */
+        case 'P':
+        {
+            u32 start, end, elapsed;
+
+            for (int i = 0; i < 4; i++)
+                pt[i] = uart_read_u32_hex();
+
+            xil_printf("ACK_PT\r\n");
+
+            /* Load and start timer */
+            XScuTimer_LoadTimer(&Timer, TIMER_LOAD_VALUE);
+            XScuTimer_Start(&Timer);
+
+            start = XScuTimer_GetCounterValue(&Timer);
+
+            /* ===== AES ENCRYPTION ===== */
+            ptr_aes[0] = pt[0];
+            ptr_aes[1] = pt[1];
+            ptr_aes[2] = pt[2];
+            ptr_aes[3] = pt[3];
+
+            ciphertext[3] = ptr_aes[12];
+            ciphertext[2] = ptr_aes[13];
+            ciphertext[1] = ptr_aes[14];
+            ciphertext[0] = ptr_aes[15];
+            /* ========================== */
+
+            end = XScuTimer_GetCounterValue(&Timer);
+            XScuTimer_Stop(&Timer);
+
+            elapsed = start - end;
+
+            xil_printf("ENC_TICKS:%u\r\n", elapsed);
+
+            xil_printf("CT:");
+            for (int i = 0; i < 4; i++)
+                xil_printf("%08X", ciphertext[i]);
+            xil_printf("\r\n");
+            break;
+        }
+
+        /* ================= DECRYPT ================= */
+        case 'D':
+            for (int i = 0; i < 4; i++)
+                ct[i] = uart_read_u32_hex();
+
+            ptr_inv_aes[0] = ct[0];
+            ptr_inv_aes[1] = ct[1];
+            ptr_inv_aes[2] = ct[2];
+            ptr_inv_aes[3] = ct[3];
+
+            xil_printf("PT:");
+
+            if (output_mode == 'T') {
+                for (int i = 7; i >= 4; i--)
+                    print_ascii_from_u32(ptr_inv_aes[i]);
+            } else {
+                for (int i = 7; i >= 4; i--)
+                    xil_printf("%08X", ptr_inv_aes[i]);
+            }
+
+            xil_printf("\r\n");
+            break;
+
+        /* ================= MODES ================= */
+        case 'T':
+            output_mode = 'T';
+            xil_printf("TEXT MODE\r\n");
+            break;
+
+        case 'H':
+            output_mode = 'H';
+            xil_printf("HEX MODE\r\n");
+            break;
+        }
+    }
+
+    cleanup_platform();
+    return 0;
+}

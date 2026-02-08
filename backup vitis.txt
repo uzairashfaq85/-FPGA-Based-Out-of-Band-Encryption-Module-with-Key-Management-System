@@ -1,0 +1,232 @@
+#include <stdio.h>
+#include "platform.h"
+#include "xil_printf.h"
+#include "xil_types.h"
+
+#define AES_DATA_BASEADDR    0x43C10000
+#define AES_INV_DATA_BASEADDR    0x43C20000
+u32 *ptr_aes=0x43C10000;
+u32 *ptr_inv_aes= 0x43C20000;
+
+unsigned int ciphertext[4];  // Store encrypted result
+unsigned int decr_plaintext[4];  // Store decrypted result
+
+static char uart_getc(void) { return (char)inbyte(); }
+static char output_mode = 'H';   // default HEX
+
+static int hex_to_nibble(char c)
+{
+    if (c >= '0' && c <= '9') return c - '0';
+    if (c >= 'a' && c <= 'f') return c - 'a' + 10;
+    if (c >= 'A' && c <= 'F') return c - 'A' + 10;
+    return -1;
+}
+
+// Delay function for simulation
+void delay_seconds(int seconds) {
+    for (volatile int s = 0; s < seconds; s++) {
+        for (volatile int i = 0; i < 10000000; i++);
+    }
+}
+
+static u32 uart_read_u32_hex(void)
+{
+    u32 value = 0;
+    char c;
+
+    for (int i = 0; i < 8; i++) {
+        c = uart_getc();
+        while (c == '\r' || c == '\n' || c == ' ' || c == '\t') c = uart_getc();
+
+        int nibble = hex_to_nibble(c);
+        /*if (nibble < 0) {
+            xil_printf("\r\n[ERROR] Invalid hex character: '%c'\r\n", c);
+            return 0;
+        }*/
+        value = (value << 4) | (u32)nibble;
+    }
+    return value;
+}
+
+static void print_key_plain_one_line(const unsigned int key[8],const unsigned int pt[4])
+{
+    xil_printf("\r\nKEY_ECHO:");
+    for (int i = 0; i < 8; i++) xil_printf("%08X", key[i]);
+    xil_printf("\r\n");
+
+    xil_printf("\r\nPLAIN_ECHO:");
+    for (int i = 0; i < 4; i++) xil_printf("%08X", pt[i]);
+    xil_printf("\r\n");
+}
+static void print_ascii_from_u32(u32 word)
+{
+    for (int b = 3; b >= 0; b--)
+    {
+        char c = (word >> (8 * b)) & 0xFF;
+        if (c >= 32 && c <= 126)
+            xil_printf("%c", c);
+        else
+            xil_printf(".");
+    }
+}
+
+static void send_ciphertext_hex(void)
+{
+    for (int i = 0; i < 4; i++)
+        xil_printf("%08X", ciphertext[i]);
+    xil_printf("\r\n");
+}
+
+static void send_plaintext(void)
+{
+    if (output_mode == 'T')
+    {
+        for (int i = 7; i >= 4; i--)
+            print_ascii_from_u32(ptr_inv_aes[i]);
+    }
+    else
+    {
+        for (int i = 7; i >= 4; i--)
+            xil_printf("%08X", ptr_inv_aes[i]);
+    }
+    xil_printf("\r\n");
+}
+
+
+int main()
+{
+    unsigned int key[8];
+    unsigned int pt[4];
+    unsigned int ct[4];
+
+    init_platform();
+
+    while (1)
+    {
+        char opcode = uart_getc();
+
+        switch (opcode)
+        {
+        case 'K':
+            //uart_getc(); // skip ':'
+            for (int i = 0; i < 8; i++)
+                key[i] = uart_read_u32_hex();
+            xil_printf("ACK_KEY\n");
+
+            ptr_aes[4]=key[0];
+            ptr_aes[5]=key[1];
+            ptr_aes[6]=key[2];
+            ptr_aes[7]=key[3];
+            ptr_aes[8]=key[4];
+            ptr_aes[9]=key[5];
+            ptr_aes[10]=key[6];
+            ptr_aes[11]=key[7];
+            break;
+
+        case 'P':
+            //uart_getc();
+            for (int i = 0; i < 4; i++)
+                pt[i] = uart_read_u32_hex();
+
+            xil_printf("ACK_PT\n");
+
+            // trigger AES encryption (AXI write)
+            ptr_aes[0]=pt[0];
+            ptr_aes[1]=pt[1];
+            ptr_aes[2]=pt[2];
+            ptr_aes[3]=pt[3];
+
+            ciphertext[3]=ptr_aes[12];
+            ciphertext[2]=ptr_aes[13];
+            ciphertext[1]=ptr_aes[14];
+            ciphertext[0]=ptr_aes[15];
+
+
+            xil_printf("KEY_ECHO:");
+            for (int i = 0; i < 8; i++)
+            {
+                xil_printf("%08X", key[i]);
+            }
+            xil_printf("\r\n");
+
+            
+            xil_printf("Plain text:");
+            for (int i = 0; i < 4; i++)
+            {
+                xil_printf("%08X", pt[i]);
+            }
+            xil_printf("\r\n");
+
+
+            xil_printf("Cipher text After Encr:");
+            for (int i = 0; i < 4; i++)
+            {
+                xil_printf("%08X", ciphertext[i]);
+            }
+            xil_printf("\r\n");
+
+            break;
+
+    case 'D':
+        // trigger AES decryption
+
+        xil_printf("RDY_CT\n");
+        for (int i = 0; i < 4; i++)
+            ct[i] = uart_read_u32_hex();
+        xil_printf("ACK_CT\n");
+
+        ptr_inv_aes[0] = ct[0];
+        ptr_inv_aes[1] = ct[1];
+        ptr_inv_aes[2] = ct[2];
+        ptr_inv_aes[3] = ct[3];
+
+        xil_printf("Plain text After Decr:");
+         
+       if (output_mode == 'T')
+       {
+            // ---- TEXT MODE ----
+            xil_printf("T:");
+            for (int i = 7; i >= 4; i--)
+            {
+                print_ascii_from_u32(ptr_inv_aes[i]);
+            }
+       }
+       else
+       {
+            // ---- HEX MODE ----
+            for (int i = 7; i >= 4; i--)
+            {
+                xil_printf("%08X", ptr_inv_aes[i]);
+            }
+        }
+
+        xil_printf("\r\n");
+        break;
+
+       case 'T':   // TEXT mode ON
+            output_mode = 'T';
+            xil_printf("Text Mode\n");
+            break;
+
+        case 'H':   // HEX mode ON
+            output_mode = 'H';
+            xil_printf("Hex Mode\n");
+            break;
+
+        case 'S':   // SEND last ciphertext (for saving on PC)
+            send_ciphertext_hex();
+            break;
+
+        case 'R':   // SEND last decrypted plaintext (for saving on PC)
+            send_plaintext();
+            break;
+
+
+
+        }
+
+    }
+
+    cleanup_platform();
+    return 0;
+}

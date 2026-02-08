@@ -1,0 +1,598 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Nov 26 00:37:42 2025
+# Process ID: 36288
+# Current directory: C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_aes_inv_256_0_0_synth_1
+# Command line: vivado.exe -log design_1_aes_inv_256_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_aes_inv_256_0_0.tcl
+# Log file: C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_aes_inv_256_0_0_synth_1/design_1_aes_inv_256_0_0.vds
+# Journal file: C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_aes_inv_256_0_0_synth_1\vivado.jou
+# Running On        :LAPTOP-PANIECHO
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26100
+# Processor Detail  :AMD Ryzen 3 7330U with Radeon Graphics         
+# CPU Frequency     :2296 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :7885 MB
+# Swap memory       :24435 MB
+# Total Virtual     :32320 MB
+# Available Virtual :4728 MB
+#-----------------------------------------------------------
+source design_1_aes_inv_256_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 514.586 ; gain = 200.406
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/ehtes/working_led_buttons_adder/ip_repo/myip_inv_aes256_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/ehtes/working_led_buttons_adder/ip_repo/myip_aes_data_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/ehtes/ip_repo/axi_rt_1_0'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Vivado/2024.1/data/ip'.
+Command: synth_design -top design_1_aes_inv_256_0_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Device 21-9227] Part: xc7z020clg400-1 does not have CEAM library.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 19856
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1410.523 ; gain = 447.285
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'design_1_aes_inv_256_0_0' [c:/Users/ehtes/working_led_buttons_adder/project_22/project_22.gen/sources_1/bd/design_1/ip/design_1_aes_inv_256_0_0/synth/design_1_aes_inv_256_0_0.vhd:80]
+INFO: [Synth 8-3491] module 'aes_inv_256' declared at 'C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/aes_inv_256.v:21' bound to instance 'U0' of component 'aes_inv_256' [c:/Users/ehtes/working_led_buttons_adder/project_22/project_22.gen/sources_1/bd/design_1/ip/design_1_aes_inv_256_0_0/synth/design_1_aes_inv_256_0_0.vhd:121]
+INFO: [Synth 8-6157] synthesizing module 'aes_inv_256' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/aes_inv_256.v:21]
+INFO: [Synth 8-6157] synthesizing module 'inv_aes_round' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_aes_round.v:21]
+INFO: [Synth 8-6157] synthesizing module 'inv_mix_columns' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_mix_columns.v:21]
+INFO: [Synth 8-6157] synthesizing module 'inv_mix_column' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_mix_column.v:21]
+INFO: [Synth 8-6157] synthesizing module 'mul_14' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_14.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'mul_14' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_14.v:21]
+INFO: [Synth 8-6157] synthesizing module 'mul_11' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_11.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'mul_11' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_11.v:21]
+INFO: [Synth 8-6157] synthesizing module 'mul_13' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_13.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'mul_13' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_13.v:21]
+INFO: [Synth 8-6157] synthesizing module 'mul_09' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_09.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'mul_09' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_09.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'inv_mix_column' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_mix_column.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'inv_mix_columns' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_mix_columns.v:21]
+INFO: [Synth 8-6157] synthesizing module 'inv_shift_rows' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_shift_rows.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'inv_shift_rows' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_shift_rows.v:21]
+INFO: [Synth 8-6157] synthesizing module 'inv_sub_bytes' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sub_bytes.v:21]
+INFO: [Synth 8-6157] synthesizing module 'inv_sbox' [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sbox.v:21]
+INFO: [Synth 8-226] default block is never used [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sbox.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'inv_sbox' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sbox.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'inv_sub_bytes' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sub_bytes.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'inv_aes_round' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_aes_round.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'aes_inv_256' (0#1) [C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/aes_inv_256.v:21]
+INFO: [Synth 8-256] done synthesizing module 'design_1_aes_inv_256_0_0' (0#1) [c:/Users/ehtes/working_led_buttons_adder/project_22/project_22.gen/sources_1/bd/design_1/ip/design_1_aes_inv_256_0_0/synth/design_1_aes_inv_256_0_0.vhd:80]
+WARNING: [Synth 8-7129] Port key_in[127] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[126] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[125] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[124] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[123] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[122] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[121] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[120] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[119] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[118] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[117] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[116] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[115] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[114] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[113] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[112] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[111] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[110] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[109] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[108] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[107] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[106] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[105] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[104] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[103] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[102] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[101] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[100] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[99] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[98] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[97] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[96] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[95] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[94] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[93] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[92] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[91] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[90] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[89] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[88] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[87] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[86] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[85] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[84] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[83] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[82] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[81] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[80] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[79] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[78] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[77] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[76] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[75] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[74] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[73] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[72] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[71] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[70] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[69] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[68] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[67] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[66] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[65] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[64] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[63] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[62] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[61] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[60] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[59] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[58] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[57] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[56] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[55] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[54] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[53] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[52] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[51] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[50] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[49] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[48] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[47] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[46] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[45] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[44] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[43] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[42] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[41] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[40] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[39] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[38] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[37] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[36] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[35] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[34] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[33] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[32] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[31] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[30] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[29] in module inv_aes_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port key_in[28] in module inv_aes_round is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1527.809 ; gain = 564.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1527.809 ; gain = 564.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1527.809 ; gain = 564.570
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.520 . Memory (MB): peak = 1527.809 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1636.516 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.309 . Memory (MB): peak = 1639.059 ; gain = 2.543
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1639.059 ; gain = 675.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1639.059 ; gain = 675.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1639.059 ; gain = 675.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1639.059 ; gain = 675.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input    128 Bit         XORs := 15    
+	   2 Input      8 Bit         XORs := 4256  
+	   4 Input      8 Bit         XORs := 224   
++---Registers : 
+	              128 Bit    Registers := 14    
++---Muxes : 
+	   2 Input  128 Bit        Muxes := 14    
+	   3 Input    8 Bit        Muxes := 2688  
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:03:09 ; elapsed = 00:03:22 . Memory (MB): peak = 1728.844 ; gain = 765.605
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-------------------------+------------+---------------+----------------+
+|Module Name              | RTL Object | Depth x Width | Implemented As | 
++-------------------------+------------+---------------+----------------+
+|inv_sbox                 | o          | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/a/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/b/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/c/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/d/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/e/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/f/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/g/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/h/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/i/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/j/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/k/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/l/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/m/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/n/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/o/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r9/sb/p/o  | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/a/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/b/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/c/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/d/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/e/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/f/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/g/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/h/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/i/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/j/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/k/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/l/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/m/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/n/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/o/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r10/sb/p/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/a/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/b/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/c/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/d/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/e/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/f/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/g/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/h/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/i/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/j/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/k/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/l/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/m/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/n/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/o/o | 256x8         | LUT            | 
+|design_1_aes_inv_256_0_0 | r11/sb/p/o | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/a/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/b/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/c/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/d/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/e/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/f/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/g/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/h/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/i/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/j/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/k/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/l/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/m/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/n/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/o/o     | 256x8         | LUT            | 
+|inv_aes_round            | sb/p/o     | 256x8         | LUT            | 
++-------------------------+------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:03:15 ; elapsed = 00:03:28 . Memory (MB): peak = 1728.844 ; gain = 765.605
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:03:15 ; elapsed = 00:03:28 . Memory (MB): peak = 1728.844 ; gain = 765.605
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:03:19 ; elapsed = 00:03:32 . Memory (MB): peak = 1776.449 ; gain = 813.211
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:03:25 ; elapsed = 00:03:38 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:25 ; elapsed = 00:03:38 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:26 ; elapsed = 00:03:39 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:03:26 ; elapsed = 00:03:39 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:26 ; elapsed = 00:03:40 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:03:26 ; elapsed = 00:03:40 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |LUT2  |  1680|
+|2     |LUT3  |    40|
+|3     |LUT4  |   920|
+|4     |LUT5  |   684|
+|5     |LUT6  | 12224|
+|6     |MUXF7 |  1536|
+|7     |MUXF8 |   128|
+|8     |FDCE  |  1792|
++------+------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:26 ; elapsed = 00:03:40 . Memory (MB): peak = 1787.477 ; gain = 824.238
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 129 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:12 ; elapsed = 00:03:33 . Memory (MB): peak = 1787.477 ; gain = 712.988
+Synthesis Optimization Complete : Time (s): cpu = 00:03:27 ; elapsed = 00:03:40 . Memory (MB): peak = 1787.477 ; gain = 824.238
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.217 . Memory (MB): peak = 1796.598 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1664 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1801.273 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 2d364c17
+INFO: [Common 17-83] Releasing license: Synthesis
+48 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:03:36 ; elapsed = 00:03:53 . Memory (MB): peak = 1801.273 ; gain = 1265.695
+INFO: [Coretcl 2-1174] Renamed 253 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1801.273 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.runs/design_1_aes_inv_256_0_0_synth_1/design_1_aes_inv_256_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_aes_inv_256_0_0_utilization_synth.rpt -pb design_1_aes_inv_256_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 26 00:42:03 2025...

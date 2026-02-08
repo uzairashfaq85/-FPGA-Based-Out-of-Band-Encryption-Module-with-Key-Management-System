@@ -1,0 +1,39 @@
+# Build/export outputs
+build/
+export/
+
+# Tool-generated build trees (prevents "Filename too long" issues)
+CMakeFiles/
+cmake-build-*/
+platform/
+backup files/
+
+# Object / dependency / intermediate files
+*.o
+*.d
+*.obj
+*.a
+*.elf
+*.map
+
+# Logs
+logs/
+*.log
+
+# Lock / temp
+*.lock
+*.tmp
+*.bak
+*~
+
+# Bitstreams / images
+*.bin
+*.pdi
+
+# Vitis/Theia workspace metadata
+.peers.ini
+.repo.yaml
+.vitisWorkspace.json
+.wsdata/
+.theia/
+_ide/

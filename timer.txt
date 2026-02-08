@@ -1,0 +1,48 @@
+#include "platform.h"
+#include "xil_printf.h"
+#include "xparameters.h"
+#include "xscutimer.h"
+
+#define TIMER_LOAD_VALUE 0x00FFFFFF
+
+int main(void)
+{
+    XScuTimer Timer;
+    XScuTimer_Config *Cfg;
+    volatile int cnt = 0;
+    u32 start, end, elapsed;
+
+    init_platform();
+    xil_printf("Zybo Z7-20 SCU Timer Test\r\n");
+
+    /* SDT-safe lookup */
+    Cfg = XScuTimer_LookupConfig(XPAR_SCUTIMER_BASEADDR);
+    if (!Cfg) {
+        xil_printf("Timer config not found!\r\n");
+        return -1;
+    }
+
+    XScuTimer_CfgInitialize(&Timer, Cfg, Cfg->BaseAddr);
+    XScuTimer_DisableAutoReload(&Timer);
+    XScuTimer_LoadTimer(&Timer, TIMER_LOAD_VALUE);
+
+    /* Start */
+    XScuTimer_Start(&Timer);
+    start = XScuTimer_GetCounterValue(&Timer);
+
+    /* Work */
+    for (int i = 0; i < 150; i++) {
+        cnt++;
+    }
+
+    end = XScuTimer_GetCounterValue(&Timer);
+    XScuTimer_Stop(&Timer);
+
+    elapsed = start - end;
+
+    xil_printf("Counter = %d\r\n", cnt);
+    xil_printf("Elapsed timer ticks = %u\r\n", elapsed);
+
+    cleanup_platform();
+    return 0;
+}

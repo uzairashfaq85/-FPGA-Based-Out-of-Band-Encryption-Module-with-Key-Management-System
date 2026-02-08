@@ -1,0 +1,4 @@
+String to Hex
+https://codebeautify.org/string-hex-converter
+Hex to string
+https://codebeautify.org/hex-string-converter

@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Nov 13 21:41:30 2025
+# Process ID: 544
+# Current directory: C:/Users/ehtes/project_22/project_22.runs/design_1_processing_system7_0_0_synth_1
+# Command line: vivado.exe -log design_1_processing_system7_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_processing_system7_0_0.tcl
+# Log file: C:/Users/ehtes/project_22/project_22.runs/design_1_processing_system7_0_0_synth_1/design_1_processing_system7_0_0.vds
+# Journal file: C:/Users/ehtes/project_22/project_22.runs/design_1_processing_system7_0_0_synth_1\vivado.jou
+# Running On        :LAPTOP-PANIECHO
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26100
+# Processor Detail  :AMD Ryzen 3 7330U with Radeon Graphics         
+# CPU Frequency     :2296 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :7885 MB
+# Swap memory       :23529 MB
+# Total Virtual     :31414 MB
+# Available Virtual :9084 MB
+#-----------------------------------------------------------
+source design_1_processing_system7_0_0.tcl -notrace

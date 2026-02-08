@@ -1,0 +1,468 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Dec  4 13:43:56 2025
+# Process ID: 44648
+# Current directory: C:/Users/ehtes/working_led_buttons_adder/project_22
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent46384 C:\Users\ehtes\working_led_buttons_adder\project_22\project_22.xpr
+# Log file: C:/Users/ehtes/working_led_buttons_adder/project_22/vivado.log
+# Journal file: C:/Users/ehtes/working_led_buttons_adder/project_22\vivado.jou
+# Running On        :LAPTOP-PANIECHO
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26100
+# Processor Detail  :AMD Ryzen 3 7330U with Radeon Graphics         
+# CPU Frequency     :2296 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :7885 MB
+# Swap memory       :24696 MB
+# Total Virtual     :32581 MB
+# Available Virtual :10402 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.xpr
+update_compile_order -fileset sources_1
+open_bd_design {C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd}
+ipx::edit_ip_in_project -upgrade true -name myip_aes_data_v1_0_project -directory C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.tmp/myip_aes_data_v1_0_project c:/Users/ehtes/working_led_buttons_adder/ip_repo/myip_aes_data_1_0/component.xml
+update_compile_order -fileset sources_1
+current_project project_22
+ipx::edit_ip_in_project -upgrade true -name myip_inv_aes256_v1_0_project -directory C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.tmp/myip_inv_aes256_v1_0_project c:/Users/ehtes/working_led_buttons_adder/ip_repo/myip_inv_aes256_1_0/component.xml
+update_compile_order -fileset sources_1
+current_project project_22
+open_project C:/Users/ehtes/project_23/project_aes_256/project_aes_256.xpr
+current_project myip_aes_data_v1_0_project
+current_project myip_inv_aes256_v1_0_project
+current_project project_aes_256
+open_bd_design {C:/Users/ehtes/project_23/project_aes_256/project_aes_256.srcs/sources_1/bd/design_1/design_1.bd}
+current_project myip_aes_data_v1_0_project
+current_project myip_inv_aes256_v1_0_project
+launch_simulation
+source myip_inv_aes256.tcl
+close_sim
+current_project project_aes_256
+launch_simulation
+launch_simulation
+launch_simulation
+close_sim -force
+reset_sim
+launch_simulation
+current_project project_22
+current_project project_aes_256
+close_sim -force
+current_project myip_aes_data_v1_0_project
+close_project
+current_project myip_inv_aes256_v1_0_project
+close_project
+launch_simulation
+launch_simulation
+launch_simulation
+close_project
+create_project project_aes_again_indiviual C:/Users/ehtes/project_23/project_aes_again_indiviual -part xc7z020clg400-1
+set_property board_part digilentinc.com:zybo-z7-20:part0:1.1 [current_project]
+add_files -norecurse {{C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/aes_256.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sbox.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_aes_round.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_mix_columns.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mix_cloumns.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_14.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_13.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/rotate_left.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/shift_rows.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_evolve_key.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_shift_rows.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/sub_bytes.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_11.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/sbox.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_sub_bytes.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/aes_inv_256.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/inv_mix_column.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/evolve_key_256.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/sub_word.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/top_aes.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/xor.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mix_column.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/mul_09.v} {C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/aes_round.v}}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse {{C:/Users/ehtes/Desktop/UGA Data/CE514- Architecture SOC/Proj/from other laptop/aes/test6.v}}
+update_compile_order -fileset sim_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top test6 [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 2}
+add_wave {{/test6/uut/de}} 
+restart
+run all
+current_project project_22
+ipx::edit_ip_in_project -upgrade true -name myip_aes_data_v1_0_project -directory C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.tmp/myip_aes_data_v1_0_project c:/Users/ehtes/working_led_buttons_adder/ip_repo/myip_aes_data_1_0/component.xml
+update_compile_order -fileset sources_1
+current_project project_22
+ipx::edit_ip_in_project -upgrade true -name myip_inv_aes256_v1_0_project -directory C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.tmp/myip_inv_aes256_v1_0_project c:/Users/ehtes/working_led_buttons_adder/ip_repo/myip_inv_aes256_1_0/component.xml
+update_compile_order -fileset sources_1
+current_project myip_aes_data_v1_0_project
+current_project project_22
+open_bd_design {C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd}
+current_project project_aes_again_indiviual
+create_bd_design "design_1"
+update_compile_order -fileset sources_1
+close_bd_design [get_bd_designs design_1]
+close_sim
+open_bd_design {C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd}
+create_bd_cell -type module -reference aes_256 aes_256_0
+current_project myip_aes_data_v1_0_project
+current_project myip_inv_aes256_v1_0_project
+current_project project_aes_again_indiviual
+set_property location {0.5 -21 13} [get_bd_cells aes_256_0]
+create_bd_cell -type module -reference aes_inv_256 aes_inv_256_0
+current_project myip_aes_data_v1_0_project
+current_project myip_inv_aes256_v1_0_project
+current_project project_aes_again_indiviual
+set_property location {1 -113 -430} [get_bd_cells aes_256_0]
+set_property location {2 355 -430} [get_bd_cells aes_inv_256_0]
+startgroup
+make_bd_pins_external  [get_bd_pins aes_256_0/clk] [get_bd_pins aes_256_0/rst]
+endgroup
+connect_bd_net [get_bd_ports clk_0] [get_bd_pins aes_inv_256_0/clk]
+connect_bd_net [get_bd_ports rst_0] [get_bd_pins aes_inv_256_0/dat_in]
+connect_bd_net [get_bd_ports rst_0] [get_bd_pins aes_inv_256_0/rst]
+disconnect_bd_net /rst_0_1 [get_bd_pins aes_inv_256_0/dat_in]
+connect_bd_net [get_bd_pins aes_inv_256_0/dat_in] [get_bd_pins aes_256_0/dat_out]
+connect_bd_net [get_bd_pins aes_256_0/key_out] [get_bd_pins aes_inv_256_0/last_key]
+set_property location {2 275 -413} [get_bd_cells aes_inv_256_0]
+connect_bd_net [get_bd_pins aes_256_0/key1] [get_bd_pins aes_inv_256_0/key1]
+set_property location {2 277 -403} [get_bd_cells aes_inv_256_0]
+set_property location {2 283 -392} [get_bd_cells aes_inv_256_0]
+set_property location {2 294 -422} [get_bd_cells aes_inv_256_0]
+set_property location {2 293 -433} [get_bd_cells aes_inv_256_0]
+connect_bd_net [get_bd_pins aes_256_0/key2] [get_bd_pins aes_inv_256_0/key2]
+connect_bd_net [get_bd_pins aes_256_0/key3] [get_bd_pins aes_inv_256_0/key3]
+connect_bd_net [get_bd_pins aes_256_0/key4] [get_bd_pins aes_inv_256_0/key4]
+connect_bd_net [get_bd_pins aes_256_0/key5] [get_bd_pins aes_inv_256_0/key5]
+connect_bd_net [get_bd_pins aes_256_0/key6] [get_bd_pins aes_inv_256_0/key6]
+connect_bd_net [get_bd_pins aes_256_0/key7] [get_bd_pins aes_inv_256_0/key7]
+connect_bd_net [get_bd_pins aes_256_0/key8] [get_bd_pins aes_inv_256_0/key8]
+connect_bd_net [get_bd_pins aes_256_0/key9] [get_bd_pins aes_inv_256_0/key9]
+connect_bd_net [get_bd_pins aes_256_0/key10] [get_bd_pins aes_inv_256_0/key10]
+connect_bd_net [get_bd_pins aes_256_0/key11] [get_bd_pins aes_inv_256_0/key11]
+connect_bd_net [get_bd_pins aes_256_0/key12] [get_bd_pins aes_inv_256_0/key12]
+connect_bd_net [get_bd_pins aes_256_0/key13] [get_bd_pins aes_inv_256_0/key14]
+undo
+connect_bd_net [get_bd_pins aes_256_0/key13] [get_bd_pins aes_inv_256_0/key13]
+connect_bd_net [get_bd_pins aes_256_0/key14] [get_bd_pins aes_inv_256_0/key14]
+startgroup
+make_bd_pins_external  [get_bd_pins aes_inv_256_0/dat_out]
+endgroup
+set_property location {2 416 -477} [get_bd_cells aes_inv_256_0]
+set_property location {2 422 -492} [get_bd_cells aes_inv_256_0]
+set_property location {2 418 -482} [get_bd_cells aes_inv_256_0]
+set_property location {2 417 -501} [get_bd_cells aes_inv_256_0]
+set_property location {2 415 -495} [get_bd_cells aes_inv_256_0]
+set_property location {2 414 -493} [get_bd_cells aes_inv_256_0]
+set_property location {2 417 -462} [get_bd_cells aes_inv_256_0]
+set_property location {2 418 -456} [get_bd_cells aes_inv_256_0]
+set_property location {2 414 -438} [get_bd_cells aes_inv_256_0]
+set_property location {2 436 -491} [get_bd_cells aes_inv_256_0]
+set_property location {2 426 -488} [get_bd_cells aes_inv_256_0]
+set_property location {1.5 297 -493} [get_bd_cells aes_inv_256_0]
+set_property location {2 299 -432} [get_bd_cells aes_inv_256_0]
+set_property location {2 308 -432} [get_bd_cells aes_inv_256_0]
+set_property location {2 331 -434} [get_bd_cells aes_inv_256_0]
+set_property location {2 303 -436} [get_bd_cells aes_inv_256_0]
+set_property location {2 310 -408} [get_bd_cells aes_inv_256_0]
+set_property location {2 312 -415} [get_bd_cells aes_inv_256_0]
+set_property location {1.5 138 -438} [get_bd_cells aes_inv_256_0]
+set_property location {2.5 301 -412} [get_bd_cells aes_inv_256_0]
+set_property location {2 308 -423} [get_bd_cells aes_inv_256_0]
+set_property location {2 224 -441} [get_bd_cells aes_inv_256_0]
+set_property location {2 206 -451} [get_bd_cells aes_inv_256_0]
+startgroup
+make_bd_pins_external  [get_bd_pins aes_256_0/dat_in] [get_bd_pins aes_256_0/key]
+endgroup
+save_bd_design
+current_project myip_inv_aes256_v1_0_project
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+make_wrapper -files [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -top
+add_files -norecurse c:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top design_1_wrapper [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+generate_target Simulation [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd]
+export_ip_user_files -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -directory C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files -ipstatic_source_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/modelsim} {questa=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/questa} {riviera=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/riviera} {activehdl=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 3}
+add_wave {{/test6/uut1/design_1_i/aes_256_0}} 
+restart
+run all
+current_wave_config {Untitled 3}
+add_wave {{/test6/uut1/design_1_i/aes_inv_256_0}} 
+restart
+run all
+close_sim
+delete_bd_objs [get_bd_nets aes_256_0_dat_out]
+current_project myip_inv_aes256_v1_0_project
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+delete_bd_objs [get_bd_nets dat_in_0_1]
+connect_bd_net [get_bd_ports dat_in_0] [get_bd_pins aes_inv_256_0/dat_in]
+save_bd_design
+current_project myip_inv_aes256_v1_0_project
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+generate_target Simulation [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd]
+export_ip_user_files -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -directory C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files -ipstatic_source_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/modelsim} {questa=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/questa} {riviera=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/riviera} {activehdl=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source test6.tcl
+close_sim
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 5}
+add_wave {{/test6/uut1/design_1_i/aes_256_0}} 
+current_wave_config {Untitled 5}
+add_wave {{/test6/uut1/design_1_i/aes_inv_256_0}} 
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 6}
+add_wave {{/test6/uut1/design_1_i/aes_256_0}} 
+current_wave_config {Untitled 6}
+add_wave {{/test6/uut1/design_1_i/aes_inv_256_0}} 
+run all
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 7}
+add_wave {{/test6/uut1/design_1_i/aes_256_0}} 
+restart
+run all
+close_sim
+delete_bd_objs [get_bd_nets dat_in_0_1]
+current_project myip_inv_aes256_v1_0_project
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+connect_bd_net [get_bd_pins aes_inv_256_0/dat_in] [get_bd_pins aes_256_0/dat_out]
+connect_bd_net [get_bd_ports dat_in_0] [get_bd_pins aes_256_0/dat_in]
+save_bd_design
+current_project myip_inv_aes256_v1_0_project
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 8}
+add_wave {{/test6/uut/en}} 
+current_wave_config {Untitled 8}
+add_wave {{/test6/uut/de}} 
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+close_sim
+launch_simulation
+source test6.tcl
+close_sim
+launch_simulation
+source test6.tcl
+restart
+run all
+current_wave_config {Untitled 11}
+add_wave {{/test6/uut/en}} 
+current_wave_config {Untitled 11}
+add_wave {{/test6/uut/de}} 
+restart
+run all
+close_sim
+generate_target Simulation [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd]
+export_ip_user_files -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -directory C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files -ipstatic_source_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/modelsim} {questa=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/questa} {riviera=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/riviera} {activehdl=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source test6.tcl
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+restart
+run all
+current_wave_config {Untitled 13}
+add_wave {{/test6/uut/en}} 
+current_wave_config {Untitled 13}
+add_wave {{/test6/uut/de}} 
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+restart
+run all
+current_wave_config {Untitled 14}
+add_wave {{/test6/uut/design_1_i/aes_256_0}} 
+current_wave_config {Untitled 14}
+add_wave {{/test6/uut/design_1_i/aes_inv_256_0}} 
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 15}
+add_wave {{/test6/uut/en}} 
+current_wave_config {Untitled 15}
+add_wave {{/test6/uut/de}} 
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+restart
+run all
+current_wave_config {Untitled 16}
+add_wave {{/test6/uut/en/r1}} 
+current_wave_config {Untitled 16}
+add_wave {{/test6/uut/de/r1}} 
+restart
+run all
+close_sim
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 17}
+add_wave {{/test6/uut/design_1_i/aes_inv_256_0/inst/r1}} 
+restart
+run all
+current_wave_config {Untitled 17}
+add_wave {{/test6/uut/design_1_i/aes_inv_256_0/inst/r1}} 
+close_sim
+launch_simulation
+source test6.tcl
+current_wave_config {Untitled 18}
+add_wave {{/test6/uut/de/r1}} 
+current_wave_config {Untitled 18}
+add_wave {{/test6/uut/de/r1}} 
+restart
+run all
+open_bd_design {C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd}
+close_sim
+delete_bd_objs [get_bd_nets aes_256_0_key1]
+current_project myip_inv_aes256_v1_0_project
+current_project project_aes_again_indiviual
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+delete_bd_objs [get_bd_nets aes_256_0_key_out]
+delete_bd_objs [get_bd_nets aes_256_0_key2]
+delete_bd_objs [get_bd_nets aes_256_0_key3]
+delete_bd_objs [get_bd_nets aes_256_0_key4]
+delete_bd_objs [get_bd_nets aes_256_0_key5]
+delete_bd_objs [get_bd_nets aes_256_0_key6]
+delete_bd_objs [get_bd_nets aes_256_0_key7]
+delete_bd_objs [get_bd_nets aes_256_0_key8]
+delete_bd_objs [get_bd_nets aes_256_0_key9]
+delete_bd_objs [get_bd_nets aes_256_0_key10]
+delete_bd_objs [get_bd_nets aes_256_0_key11]
+delete_bd_objs [get_bd_nets aes_256_0_key12]
+delete_bd_objs [get_bd_nets aes_256_0_key13]
+delete_bd_objs [get_bd_nets aes_256_0_key14]
+connect_bd_net [get_bd_pins aes_256_0/key1] [get_bd_pins aes_inv_256_0/last_key]
+connect_bd_net [get_bd_pins aes_256_0/key_out] [get_bd_pins aes_inv_256_0/key1]
+connect_bd_net [get_bd_pins aes_256_0/key2] [get_bd_pins aes_inv_256_0/key14]
+connect_bd_net [get_bd_pins aes_256_0/key3] [get_bd_pins aes_inv_256_0/key13]
+connect_bd_net [get_bd_pins aes_256_0/key4] [get_bd_pins aes_inv_256_0/key12]
+connect_bd_net [get_bd_pins aes_256_0/key5] [get_bd_pins aes_inv_256_0/key11]
+connect_bd_net [get_bd_pins aes_256_0/key6] [get_bd_pins aes_inv_256_0/key10]
+connect_bd_net [get_bd_pins aes_256_0/key7] [get_bd_pins aes_inv_256_0/key9]
+connect_bd_net [get_bd_pins aes_256_0/key8] [get_bd_pins aes_inv_256_0/key8]
+connect_bd_net [get_bd_pins aes_256_0/key9] [get_bd_pins aes_inv_256_0/key7]
+connect_bd_net [get_bd_pins aes_256_0/key10] [get_bd_pins aes_inv_256_0/key5]
+undo
+connect_bd_net [get_bd_pins aes_256_0/key10] [get_bd_pins aes_inv_256_0/key6]
+connect_bd_net [get_bd_pins aes_256_0/key11] [get_bd_pins aes_inv_256_0/key5]
+connect_bd_net [get_bd_pins aes_256_0/key12] [get_bd_pins aes_inv_256_0/key4]
+connect_bd_net [get_bd_pins aes_256_0/key13] [get_bd_pins aes_inv_256_0/key3]
+connect_bd_net [get_bd_pins aes_256_0/key14] [get_bd_pins aes_inv_256_0/key2]
+save_bd_design
+current_project myip_inv_aes256_v1_0_project
+current_project myip_aes_data_v1_0_project
+current_project project_aes_again_indiviual
+generate_target Simulation [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd]
+export_ip_user_files -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.srcs/sources_1/bd/design_1/design_1.bd] -directory C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files -ipstatic_source_dir C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/modelsim} {questa=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/questa} {riviera=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/riviera} {activehdl=C:/Users/ehtes/project_23/project_aes_again_indiviual/project_aes_again_indiviual.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source test6.tcl
+restart
+run all
+current_project myip_inv_aes256_v1_0_project
+close_project
+close_project
+close_sim
+current_project project_22
+delete_bd_objs [get_bd_nets aes_256_0_key_out]
+delete_bd_objs [get_bd_nets aes_256_0_key1]
+delete_bd_objs [get_bd_nets aes_256_0_key2]
+delete_bd_objs [get_bd_nets aes_256_0_key3]
+delete_bd_objs [get_bd_nets aes_256_0_key4]
+delete_bd_objs [get_bd_nets aes_256_0_key5]
+delete_bd_objs [get_bd_nets aes_256_0_key6]
+delete_bd_objs [get_bd_nets aes_256_0_key7]
+delete_bd_objs [get_bd_nets aes_256_0_key8]
+delete_bd_objs [get_bd_nets aes_256_0_key9]
+delete_bd_objs [get_bd_nets aes_256_0_key10]
+delete_bd_objs [get_bd_nets aes_256_0_key11]
+delete_bd_objs [get_bd_nets aes_256_0_key12]
+delete_bd_objs [get_bd_nets aes_256_0_key13]
+delete_bd_objs [get_bd_nets aes_256_0_key14]
+connect_bd_net [get_bd_pins aes_256_0/key_out] [get_bd_pins aes_inv_256_0/key1]
+connect_bd_net [get_bd_pins aes_256_0/key1] [get_bd_pins aes_inv_256_0/last_key]
+connect_bd_net [get_bd_pins aes_256_0/key2] [get_bd_pins aes_inv_256_0/key14]
+connect_bd_net [get_bd_pins aes_256_0/key3] [get_bd_pins aes_inv_256_0/key13]
+connect_bd_net [get_bd_pins aes_256_0/key4] [get_bd_pins aes_inv_256_0/key12]
+connect_bd_net [get_bd_pins aes_256_0/key5] [get_bd_pins aes_inv_256_0/key11]
+connect_bd_net [get_bd_pins aes_256_0/key6] [get_bd_pins aes_inv_256_0/key10]
+connect_bd_net [get_bd_pins aes_256_0/key7] [get_bd_pins aes_inv_256_0/key9]
+connect_bd_net [get_bd_pins aes_256_0/key8] [get_bd_pins aes_inv_256_0/key8]
+connect_bd_net [get_bd_pins aes_256_0/key9] [get_bd_pins aes_inv_256_0/key7]
+connect_bd_net [get_bd_pins aes_256_0/key10] [get_bd_pins aes_inv_256_0/key6]
+connect_bd_net [get_bd_pins aes_256_0/key11] [get_bd_pins aes_inv_256_0/key5]
+connect_bd_net [get_bd_pins aes_256_0/key12] [get_bd_pins aes_inv_256_0/key4]
+connect_bd_net [get_bd_pins aes_256_0/key13] [get_bd_pins aes_inv_256_0/key3]
+connect_bd_net [get_bd_pins aes_256_0/key14] [get_bd_pins aes_inv_256_0/key2]
+save_bd_design
+validate_bd_design
+save_bd_design
+validate_bd_design -force
+make_wrapper -files [get_files C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd] -top
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+write_hw_platform -fixed -include_bit -force -file C:/Users/ehtes/working_led_buttons_adder/project_22/design_1_wrapper.xsa
+current_project project_aes_again_indiviual
+current_project project_22
+current_project project_aes_again_indiviual
+current_project project_22
+current_project project_aes_again_indiviual
+current_project project_22
+current_project project_aes_again_indiviual
+launch_simulation
+source test6.tcl
+run all
+current_project project_22
+delete_bd_objs [get_bd_nets myip_inv_aes256_0_aes_cipher_out]
+connect_bd_net [get_bd_pins aes_inv_256_0/dat_in] [get_bd_pins aes_256_0/dat_out]
+save_bd_design
+make_wrapper -files [get_files C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd] -top
+open_bd_design {C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd}
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+make_wrapper -files [get_files C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd] -top
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+write_hw_platform -fixed -include_bit -force -file C:/Users/ehtes/working_led_buttons_adder/project_22/design_1_wrapper.xsa
+open_bd_design {C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd}
+disconnect_bd_net /aes_256_0_dat_out [get_bd_pins aes_inv_256_0/dat_in]
+connect_bd_net [get_bd_pins myip_inv_aes256_0/aes_cipher_out] [get_bd_pins aes_inv_256_0/dat_in]
+save_bd_design
+make_wrapper -files [get_files C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd] -top
+make_wrapper -files [get_files C:/Users/ehtes/working_led_buttons_adder/project_22/project_22.srcs/sources_1/bd/design_1/design_1.bd] -top
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+write_hw_platform -fixed -include_bit -force -file C:/Users/ehtes/working_led_buttons_adder/project_22/design_1_wrapper.xsa
+close_project
+close_sim
