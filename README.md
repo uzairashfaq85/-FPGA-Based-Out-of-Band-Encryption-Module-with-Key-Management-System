@@ -19,13 +19,18 @@ This project implements a Zynq-7000 based hardware-accelerated AES flow where th
   - Ciphertext: exactly 32 hex chars (128-bit block)
 - Build config typo in `backup files/project_22/hello_world/src/UserConfig.cmake` was fixed so linker options propagate correctly.
 
-## Repository Layout (Cleaned)
+## Repository Layout
 
-- `backup files/` -> source projects and FPGA tool exports
-- `samples/uart/` -> UART input/output sample vectors
-- `assets/images/` -> architecture, timing, and result screenshots
-- `docs/reports/` -> project reports and presentation files
-- `docs/notes/` -> historical notes and timing logs (`docs/notes/legacy/` stores migrated backup snippets)
+- `backup files/project_22/` -> Vivado/Vitis workspace snapshot for the Zynq design
+- `backup files/project_22/hello_world/src/` -> bare-metal firmware sources used by Vitis
+- `backup files/project_22/project_22.srcs/` -> Vivado block design, IP definitions, and source-managed hardware files
+- `backup files/WindowsFormsApplication1/` -> C# WinForms host application and solution files
+- `samples/uart/` -> UART key/plaintext/ciphertext sample vectors and output capture
+- `assets/images/` -> architecture, waveform, timing, and application screenshots
+- `docs/reports/` -> reports, proposal documents, and presentation slides
+- `docs/notes/` -> working notes, timing logs, and legacy backup text snippets
+
+The repository still contains some previously committed Vivado/Vitis generated outputs under `backup files/project_22/`. The current `.gitignore` is intended to keep newly generated build artifacts, logs, caches, and local IDE metadata out of future commits.
 
 ## UART Protocol (Implemented)
 
