@@ -1,12 +1,19 @@
 # Build/export outputs
 build/
 export/
+project_22.cache/
+project_22.tmp/
+project_22.gen/
+project_22.hw/
+project_22.ip_user_files/
+project_22.runs/
+project_22.sim/
+.Xil/
 
 # Tool-generated build trees (prevents "Filename too long" issues)
 CMakeFiles/
 cmake-build-*/
 platform/
-backup files/
 
 # Object / dependency / intermediate files
 *.o
@@ -15,6 +22,12 @@ backup files/
 *.a
 *.elf
 *.map
+*.bit
+*.dcp
+*.rpt
+*.rpx
+*.xpr
+*.xsa
 
 # Logs
 logs/
