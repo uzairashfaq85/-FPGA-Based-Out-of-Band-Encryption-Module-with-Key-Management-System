@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+// Module:  Windows host UART client (WinForms)
+// Created: November 2025
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +16,10 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        private string selectedFilePath = "";
         private string selectedKeyPath = "";
         private string selectedPlainPath = "";
         private string selectedCipherPath = "";
 
-        private bool hexMode = false;
-        private delegate void SetTextCallback(string text); // Delegate for thread-safe UI updates
-
-        private readonly object rxLock = new object();
-        private StringBuilder rxBuffer = new StringBuilder();
         private StringBuilder lineBuffer = new StringBuilder();
         public Form1()
         {
@@ -45,6 +43,76 @@ namespace WindowsFormsApplication1
             comboBox1.Items.AddRange(ports);
             if (ports.Length > 0)
                 comboBox1.SelectedIndex = 0;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (serialPort1 != null)
+            {
+                serialPort1.DataReceived -= DataReceivedHandler;
+                if (serialPort1.IsOpen)
+                {
+                    serialPort1.Close();
+                }
+            }
+
+            base.OnFormClosing(e);
+        }
+
+        private static string NormalizeHexPayload(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return string.Empty;
+            }
+
+            StringBuilder sb = new StringBuilder(text.Length);
+            foreach (char c in text)
+            {
+                if ((c >= '0' && c <= '9') ||
+                    (c >= 'a' && c <= 'f') ||
+                    (c >= 'A' && c <= 'F'))
+                {
+                    sb.Append(char.ToUpperInvariant(c));
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        private string LoadHexPayload(string filePath, int expectedHexChars, string payloadName)
+        {
+            if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
+            {
+                MessageBox.Show("Please select a valid " + payloadName + " file first.", "No File Selected",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+            string fileContent = System.IO.File.ReadAllText(filePath);
+            string payload = NormalizeHexPayload(fileContent);
+
+            if (payload.Length == 0)
+            {
+                MessageBox.Show("Selected " + payloadName + " file does not contain hex data.", "Invalid File",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+            if (payload.Length != expectedHexChars)
+            {
+                MessageBox.Show(payloadName + " must be exactly " + expectedHexChars + " hex characters.", "Invalid Length",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+            return payload;
+        }
+
+        private void SendHexPayload(string payload)
+        {
+            serialPort1.Write(payload);
+            serialPort1.Write("\n");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -88,7 +156,6 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                // Check if serial port is open
                 if (!serialPort1.IsOpen)
                 {
                     MessageBox.Show("Please open the serial port first.", "Port Not Open",
@@ -96,37 +163,20 @@ namespace WindowsFormsApplication1
                     return;
                 }
 
-                // Check if file is selected
-                if (string.IsNullOrEmpty(selectedKeyPath) || !System.IO.File.Exists(selectedKeyPath))
-                {
-                    MessageBox.Show("Please select a valid file first.", "No File Selected",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                string payload = LoadHexPayload(selectedKeyPath, 64, "Key");
+                if (payload == null) return;
 
-                // Read file content directly
-                string fileContent = System.IO.File.ReadAllText(selectedKeyPath);
-
-                if (string.IsNullOrWhiteSpace(fileContent))
-                {
-                    MessageBox.Show("Selected file is empty.", "Empty File",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Send file content over UART
-                serialPort1.Write(fileContent);
-                serialPort1.Write("\n");   // delimiter for Vitis
+                SendHexPayload(payload);
 
                 textBox6.AppendText(
-                    "File content sent (" + fileContent.Length + " characters)\r\n");
+                    "Key sent (" + payload.Length + " hex characters)\r\n");
 
-                MessageBox.Show("File content sent successfully!", "Success",
+                MessageBox.Show("Key sent successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error sending file content: " + ex.Message, "Send Error",
+                MessageBox.Show("Error sending key: " + ex.Message, "Send Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -218,11 +268,6 @@ namespace WindowsFormsApplication1
 
                 string text = Encoding.ASCII.GetString(buf);
 
-                lock (rxLock)
-                {
-                    rxBuffer.Append(text);
-                }
-
                 // optional: live stream to textBox2 as well
                 this.BeginInvoke(new Action(() =>
                 {
@@ -252,70 +297,16 @@ namespace WindowsFormsApplication1
                 }));
 
             }
-            catch { }
-        }
-
-        private static string KeepOnlyHex(string s)
-        {
-            if (s == null) return "";
-            StringBuilder sb = new StringBuilder(s.Length);
-            foreach (char c in s)
+            catch (Exception ex)
             {
-                if ((c >= '0' && c <= '9') ||
-                    (c >= 'a' && c <= 'f') ||
-                    (c >= 'A' && c <= 'F'))
+                this.BeginInvoke(new Action(() =>
                 {
-                    sb.Append(char.ToUpperInvariant(c));
-                }
-            }
-            return sb.ToString();
-        }
-
-        // Wait until we have at least N hex characters received (timeout in ms)
-        private string WaitForHexChars(int hexCountNeeded, int timeoutMs)
-        {
-            var sw = System.Diagnostics.Stopwatch.StartNew();
-
-            while (sw.ElapsedMilliseconds < timeoutMs)
-            {
-                string snapshot;
-                lock (rxLock)
-                {
-                    snapshot = rxBuffer.ToString();
-                }
-
-                string onlyHex = KeepOnlyHex(snapshot);
-
-                if (onlyHex.Length >= hexCountNeeded)
-                    return onlyHex.Substring(0, hexCountNeeded);
-
-                System.Threading.Thread.Sleep(10);
-                Application.DoEvents(); // keeps UI responsive
-            }
-
-            return null; // timeout
-        }
-
-        
-        // Thread-safe method to update textBox2
-        private void SetText(string text)
-        {
-            if (this.textBox2.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                // Append the received data to textBox2
-                textBox2.AppendText(text);
-                
-                // Optional: Scroll to the end
-                textBox2.SelectionStart = textBox2.Text.Length;
-                textBox2.ScrollToCaret();
+                    textBox2.AppendText("RX error: " + ex.Message + Environment.NewLine);
+                }));
             }
         }
-        
+
+
         // Optional: Add a Clear button for textBox2
         private void button7_Click(object sender, EventArgs e)
         {
@@ -348,7 +339,6 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                // Check if serial port is open
                 if (!serialPort1.IsOpen)
                 {
                     MessageBox.Show("Please open the serial port first.", "Port Not Open",
@@ -356,37 +346,20 @@ namespace WindowsFormsApplication1
                     return;
                 }
 
-                // Check if file is selected
-                if (string.IsNullOrEmpty(selectedPlainPath) || !System.IO.File.Exists(selectedPlainPath))
-                {
-                    MessageBox.Show("Please select a valid file first.", "No File Selected",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                string payload = LoadHexPayload(selectedPlainPath, 32, "Plaintext");
+                if (payload == null) return;
 
-                // Read file content directly
-                string fileContent = System.IO.File.ReadAllText(selectedPlainPath);
-
-                if (string.IsNullOrWhiteSpace(fileContent))
-                {
-                    MessageBox.Show("Selected file is empty.", "Empty File",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Send file content over UART
-                serialPort1.Write(fileContent);
-                serialPort1.Write("\n");   // delimiter for Vitis
+                SendHexPayload(payload);
 
                 textBox4.AppendText(
-                    "File content sent (" + fileContent.Length + " characters)\r\n");
+                    "Plaintext sent (" + payload.Length + " hex characters)\r\n");
 
-                MessageBox.Show("File content sent successfully!", "Success",
+                MessageBox.Show("Plaintext sent successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error sending file content: " + ex.Message, "Send Error",
+                MessageBox.Show("Error sending plaintext: " + ex.Message, "Send Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -395,7 +368,6 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                // Check if serial port is open
                 if (!serialPort1.IsOpen)
                 {
                     MessageBox.Show("Please open the serial port first.", "Port Not Open",
@@ -403,37 +375,20 @@ namespace WindowsFormsApplication1
                     return;
                 }
 
-                // Check if file is selected
-                if (string.IsNullOrEmpty(selectedCipherPath) || !System.IO.File.Exists(selectedCipherPath))
-                {
-                    MessageBox.Show("Please select a valid file first.", "No File Selected",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                string payload = LoadHexPayload(selectedCipherPath, 32, "Ciphertext");
+                if (payload == null) return;
 
-                // Read file content directly
-                string fileContent = System.IO.File.ReadAllText(selectedCipherPath);
-
-                if (string.IsNullOrWhiteSpace(fileContent))
-                {
-                    MessageBox.Show("Selected file is empty.", "Empty File",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Send file content over UART
-                serialPort1.Write(fileContent);
-                serialPort1.Write("\n");   // delimiter for Vitis
+                SendHexPayload(payload);
 
                 textBox8.AppendText(
-                    "File content sent (" + fileContent.Length + " characters)\r\n");
+                    "Ciphertext sent (" + payload.Length + " hex characters)\r\n");
 
-                MessageBox.Show("File content sent successfully!", "Success",
+                MessageBox.Show("Ciphertext sent successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error sending file content: " + ex.Message, "Send Error",
+                MessageBox.Show("Error sending ciphertext: " + ex.Message, "Send Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

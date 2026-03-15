@@ -1,3 +1,7 @@
+# Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+# Module:  Vitis user build configuration
+# Created: November 2025
+
 # Copyright (C) 2023 Advanced Micro Devices, Inc.  All rights reserved.
 # SPDX-License-Identifier: MIT
 cmake_minimum_required(VERSION 3.16)
@@ -149,9 +153,9 @@ foreach(entry ${USER_UNDEFINED_SYMBOLS})
 endforeach()
 
 set(USER_LINK_OPTIONS
-    " ${USER_LINKER_NO_START_FILES}"
-    " ${USER_LINKER_NO_DEFAULT_LIBS}"
-    " ${USER_LINKER_NO_STDLIB}"
-    " ${USER_LINKER_OMIT_ALL_SYMBOL_INFO}"
+    " ${USER_LINK_NO_START_FILES}"
+    " ${USER_LINK_NO_DEFAULT_LIBS}"
+    " ${USER_LINK_NO_STDLIB}"
+    " ${USER_LINK_OMIT_ALL_SYMBOL_INFO}"
     " ${USER_LINK_OTHER_FLAGS}"
 )

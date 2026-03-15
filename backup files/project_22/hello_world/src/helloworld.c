@@ -1,3 +1,9 @@
+/*
+ * Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+ * Module:  Vitis firmware UART <-> AES hardware bridge
+ * Created: November 2025
+ */
+
 #include <stdio.h>
 #include "platform.h"
 #include "xil_printf.h"
@@ -7,7 +13,6 @@
 #define AES_INV_DATA_BASEADDR    0x43C20000
 
 unsigned int ciphertext[4];  // Store encrypted result
-unsigned int decr_plaintext[4];  // Store decrypted result
 
 static char uart_getc(void) { return (char)inbyte(); }
 
@@ -32,14 +37,15 @@ static u32 uart_read_u32_hex(void)
     char c;
 
     for (int i = 0; i < 8; i++) {
-        c = uart_getc();
-        while (c == '\r' || c == '\n' || c == ' ' || c == '\t') c = uart_getc();
+        int nibble = -1;
+        do {
+            c = uart_getc();
+            if (c == '\r' || c == '\n' || c == ' ' || c == '\t') {
+                continue;
+            }
+            nibble = hex_to_nibble(c);
+        } while (nibble < 0);
 
-        int nibble = hex_to_nibble(c);
-        /*if (nibble < 0) {
-            xil_printf("\r\n[ERROR] Invalid hex character: '%c'\r\n", c);
-            return 0;
-        }*/
         value = (value << 4) | (u32)nibble;
     }
     return value;
@@ -61,8 +67,8 @@ int main()
     unsigned int key[8];
     unsigned int pt[4];
     unsigned int ct[4];
-    u32 *ptr_aes=AES_DATA_BASEADDR;
-    u32 *ptr_inv_aes= AES_INV_DATA_BASEADDR;
+    volatile u32 *ptr_aes = (volatile u32 *)AES_DATA_BASEADDR;
+    volatile u32 *ptr_inv_aes = (volatile u32 *)AES_INV_DATA_BASEADDR;
     init_platform();
 
     while (1)
@@ -148,8 +154,8 @@ int main()
 
 
         xil_printf("Plain text After Decr:");
-        for (int i=7; i>=4; i--){
-            xil_printf("%4x", ptr_inv_aes[i]);
+        for (int i = 7; i >= 4; i--){
+            xil_printf("%08X", (u32)ptr_inv_aes[i]);
         }
         xil_printf("\r\n");
 

@@ -1,46 +1,67 @@
-📖 Overview
+﻿<!--
+Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+Module:  Repository overview and usage
+Created: Jan 2026
+-->
 
-A high-performance AES-128 Hardware Accelerator implemented on the Xilinx Zynq-7000 SoC. This project decouples cryptographic operations from the host PC, creating a "black box" encryption module where secret keys never leave the secure hardware domain.
+# FPGA-Based Out-of-Band Encryption Module with Key Management System
 
-🏗️ System Architecture
+## Overview
 
-The design utilizes the Zynq Processing System (PS) and Programmable Logic (PL) to create a trusted execution flow.
+This project implements a Zynq-7000 based hardware-accelerated AES flow where the host PC exchanges block data over UART and encryption/decryption runs in SoC hardware/firmware.
 
-Phase 1: Hardware Acceleration
+## Current Implementation Status
 
-•	PL Implementation: Custom AES-128 IP Core designed in VHDL/Verilog.
+- Firmware (`backup files/project_22/hello_world/src/helloworld.c`) now validates incoming hex characters, uses volatile MMIO access, and prints full 32-bit decrypted words.
+- WinForms app now validates file payloads before sending:
+  - Key: exactly 64 hex chars (256-bit)
+  - Plaintext: exactly 32 hex chars (128-bit block)
+  - Ciphertext: exactly 32 hex chars (128-bit block)
+- Build config typo in `backup files/project_22/hello_world/src/UserConfig.cmake` was fixed so linker options propagate correctly.
 
-•	Interface: Connected to the ARM Cortex-A9 processor via AXI4-Lite bus for control and data transfer.
+## Repository Layout (Cleaned)
 
-•	Performance: Offloads CPU-intensive AES-CBC operations to the FPGA fabric.
+- `backup files/` -> source projects and FPGA tool exports
+- `samples/uart/` -> UART input/output sample vectors
+- `assets/images/` -> architecture, timing, and result screenshots
+- `docs/reports/` -> project reports and presentation files
+- `docs/notes/` -> historical notes and timing logs (`docs/notes/legacy/` stores migrated backup snippets)
 
+## UART Protocol (Implemented)
 
-Phase 2: Secure Key Management System (KMS)
+Firmware loop emits status markers and expects payloads in this order:
 
-•	Out-of-Band Security: The encryption keys are managed solely by the Zynq SoC. The host PC (untrusted) sends plaintexts via UART but never sees the keys.
+1. `RDY_KEY`  -> send 64 hex chars (key)
+2. `ACK_KEY`
+3. `RDY_PT`   -> send 32 hex chars (plaintext)
+4. `ACK_PT`
+5. Firmware prints key/plaintext/ciphertext echo lines
+6. `RDY_CT`   -> send 32 hex chars (ciphertext for decrypt test)
+7. `ACK_CT`
+8. Firmware prints decrypted plaintext line
 
-•	Firmware: Bare-metal C application on the ARM core handles key generation, storage, and configures the AES IP.
+Whitespace/newlines in payload files are accepted by firmware and ignored during hex parsing.
 
+## Sample Input Files
 
-•	Protocol: Custom UART command-response protocol for communicating with the PC application.
+- `samples/uart/key_256.txt` -> `000102030405060708090A0B0C0D0E0F101112131415161718191A1B1C1D1E1F`
+- `samples/uart/plain_text.txt` -> `00112233445566778899AABBCCDDEEFF`
+- `samples/uart/cipher_text.txt` -> `8EA2B7CA516745BFEAFC49904B496089`
+- `samples/uart/output.txt` -> placeholder/output capture file (if used in host workflow)
 
-🚀 Key Features
+For a correct AES-256 hardware implementation, encrypting the sample plaintext with sample key is expected to produce `8EA2B7CA516745BFEAFC49904B496089`.
 
-•	Hardware Isolation: Cryptographic primitives run in hardware, isolating them from OS-level vulnerabilities.
+## Tooling Requirements
 
-•	Throughput: High-speed encryption via dedicated RTL pipelines.
+- Vivado/Vitis toolchain for hardware + bare-metal firmware build.
+- Visual Studio (or .NET Framework Developer Pack) for WinForms project.
+  - The C# project targets `.NET Framework v4.0 Client`.
 
+## Notes on Verification
 
-•	Integration: Full AXI register design for status polling and configuration.
+- Source-level fixes have been applied for known correctness issues.
+- Full end-to-end validation still requires your local FPGA bitstream + Vitis runtime + serial hardware connection.
 
-🛠️ Tech Stack
-
-•	FPGA: Xilinx Zynq Zybo Z7-10.
-
-•	Languages: VHDL/Verilog (RTL), C (Firmware), C# (PC App).
-
-•	Tools: Vivado, Xilinx SDK / Vitis, ModelSim.
-
-________________________________________
+---
 Author: Uzair Ashfaq
 

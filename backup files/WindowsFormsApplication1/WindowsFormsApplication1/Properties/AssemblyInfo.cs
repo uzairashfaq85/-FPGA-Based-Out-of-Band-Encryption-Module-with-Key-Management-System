@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿// Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+// Module:  Assembly metadata
+// Created: November 2025
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

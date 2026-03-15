@@ -1,3 +1,7 @@
+# Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+# Module:  Vitis memory/linker template variables
+# Created: November 2025
+
 set(DDR ps7_ddr_0)
 set(ps7_ddr_0 "0x100000;0x3ff00000")
 set(ps7_ram_0 "0x0;0x30000")

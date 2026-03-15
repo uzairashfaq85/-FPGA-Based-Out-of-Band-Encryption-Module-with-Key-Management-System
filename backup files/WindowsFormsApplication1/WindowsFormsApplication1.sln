@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+# Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+# Module:  Visual Studio solution
+# Created: November 2025
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{C4BB01F3-3275-454A-BB28-DC209A1F38F0}"
 EndProject
 Global

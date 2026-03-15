@@ -1,4 +1,8 @@
-﻿namespace WindowsFormsApplication1
+﻿// Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+// Module:  WinForms designer partial class
+// Created: November 2025
+
+namespace WindowsFormsApplication1
 {
     partial class Form1
     {

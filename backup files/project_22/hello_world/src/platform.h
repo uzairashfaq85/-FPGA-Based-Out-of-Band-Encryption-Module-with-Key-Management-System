@@ -1,4 +1,10 @@
 /******************************************************************************
+* Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+* Module:  Platform API declarations
+* Created: November 2025
+******************************************************************************/
+
+/******************************************************************************
 * Copyright (C) 2023 Advanced Micro Devices, Inc. All Rights Reserved.
 * SPDX-License-Identifier: MIT
 ******************************************************************************/

@@ -1,0 +1,83 @@
+# Project: FPGA-Based Out-of-Band Encryption Module with Key Management System
+# Module:  Git ignore rules for source-only commits
+# Created: November 2025
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
+*.jou
+*.str
+*.pb
+
+# Generic binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.elf
+*.bin
+*.hex
+*.map
+*.o
+*.obj
+*.pdb
+
+# Python cache (builder scripts, tools)
+__pycache__/
+*.pyc
+
+# Visual Studio / WinForms
+**/bin/
+**/obj/
+*.user
+*.suo
+*.cache
+*.VC.db
+
+# Vitis / Vivado generated outputs
+**/.Xil/
+**/.theia/
+**/.wsdata/
+**/.rigel_lopper/
+**/.lock
+**/.cache/
+**/.hw/
+**/.runs/
+**/.sim/
+**/.gen/
+**/ip_user_files/
+**/_ide/
+**/build/
+**/export/
+**/resources/qemu/
+**/*.xsa
+**/*.xpr
+**/*.lpr
+**/*.wdb
+**/*.wcfg
+**/*.backup.jou
+**/hs_err_pid*.log
+**/ip_upgrade.log
+
+# CMake / compile database (generated)
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/build.ninja
+**/compile_commands.json
+**/vitis-comp.json
+
+# Keep source tree snapshots out of commits
+backup files/project_22/logs/
+backup files/project_22/hello_world/build/
+backup files/WindowsFormsApplication1/WindowsFormsApplication1/obj/
+backup files/WindowsFormsApplication1/WindowsFormsApplication1/bin/
