@@ -1,6 +1,9 @@
 # Ignore build output directory
 /build
 /export
+/src/.cache/
+/src/.compile_commands/
+/src/.clangd
 
 # Ignore object files and dependent files
 .o
