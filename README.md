@@ -10,6 +10,38 @@ Created: Jan 2026
 
 This project implements a Zynq-7000 based hardware-accelerated AES flow where the host PC exchanges block data over UART and encryption/decryption runs in SoC hardware/firmware.
 
+## Quick Start (Vivado → Vitis → WinForms)
+
+Follow this order for a normal end-to-end run.
+
+### 1) Open and build hardware in Vivado
+
+- Open: `backup files/project_22/project_22.xpr`
+- Validate/open block design from: `backup files/project_22/project_22.srcs/`
+- Run synthesis/implementation and generate bitstream.
+- Confirm hardware export file exists: `backup files/project_22/design_1_wrapper.xsa`
+
+### 2) Open and build firmware in Vitis
+
+- Open Vitis workspace at: `backup files/project_22/`
+- Platform project path: `backup files/project_22/platform/`
+- Application project path: `backup files/project_22/hello_world/`
+- Main firmware file to edit/run: `backup files/project_22/hello_world/src/helloworld.c`
+- Build app and create/update ELF output.
+
+### 3) Run host PC app (WinForms)
+
+- Open solution: `backup files/WindowsFormsApplication1/WindowsFormsApplication1.sln`
+- Main UI logic: `backup files/WindowsFormsApplication1/WindowsFormsApplication1/Form1.cs`
+- Run app, select COM port, and load UART files from `samples/uart/`.
+
+### 4) Use sample vectors for first test
+
+- Key file: `samples/uart/key_256.txt`
+- Plaintext file: `samples/uart/plain_text.txt`
+- Ciphertext file: `samples/uart/cipher_text.txt`
+- Optional capture file: `samples/uart/output.txt`
+
 ## Current Implementation Status
 
 - Firmware (`backup files/project_22/hello_world/src/helloworld.c`) now validates incoming hex characters, uses volatile MMIO access, and prints full 32-bit decrypted words.
@@ -21,7 +53,7 @@ This project implements a Zynq-7000 based hardware-accelerated AES flow where th
 
 ## Repository Layout (Detailed)
 
-### Folder Tree (Current Snapshot)
+### Folder Tree
 
 ```text
 .
