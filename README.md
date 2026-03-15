@@ -19,18 +19,97 @@ This project implements a Zynq-7000 based hardware-accelerated AES flow where th
   - Ciphertext: exactly 32 hex chars (128-bit block)
 - Build config typo in `backup files/project_22/hello_world/src/UserConfig.cmake` was fixed so linker options propagate correctly.
 
-## Repository Layout
+## Repository Layout (Detailed)
 
-- `backup files/project_22/` -> Vivado/Vitis workspace snapshot for the Zynq design
-- `backup files/project_22/hello_world/src/` -> bare-metal firmware sources used by Vitis
-- `backup files/project_22/project_22.srcs/` -> Vivado block design, IP definitions, and source-managed hardware files
-- `backup files/WindowsFormsApplication1/` -> C# WinForms host application and solution files
-- `samples/uart/` -> UART key/plaintext/ciphertext sample vectors and output capture
-- `assets/images/` -> architecture, waveform, timing, and application screenshots
-- `docs/reports/` -> reports, proposal documents, and presentation slides
-- `docs/notes/` -> working notes, timing logs, and legacy backup text snippets
+### Folder Tree (Current Snapshot)
 
-The repository still contains some previously committed Vivado/Vitis generated outputs under `backup files/project_22/`. The current `.gitignore` is intended to keep newly generated build artifacts, logs, caches, and local IDE metadata out of future commits.
+```text
+.
+├─ README.md
+├─ assets/
+│  └─ images/                         # architecture, timing, waveform, app screenshots
+├─ docs/
+│  ├─ notes/                          # experiment notes and legacy text backups
+│  │  └─ legacy/
+│  └─ reports/                        # reports, proposal docs, presentation slides
+├─ samples/
+│  └─ uart/
+│     ├─ key_256.txt
+│     ├─ plain_text.txt
+│     ├─ cipher_text.txt
+│     └─ output.txt
+└─ backup files/
+  ├─ project_22/                     # Vivado/Vitis workspace snapshot (hardware + platform + app)
+  │  ├─ hello_world/
+  │  │  ├─ src/                      # firmware source files (main editable app code)
+  │  │  ├─ build/                    # generated
+  │  │  └─ _ide/                     # generated
+  │  ├─ platform/                    # Vitis platform and BSP outputs
+  │  ├─ project_22.srcs/             # source-managed Vivado design sources
+  │  ├─ project_22.runs/             # synthesis/implementation outputs (generated)
+  │  ├─ project_22.gen/              # generated IP/output products
+  │  └─ logs/                        # generated run logs
+  └─ WindowsFormsApplication1/
+    ├─ WindowsFormsApplication1.sln
+    └─ WindowsFormsApplication1/    # C# host app source (Form1, Program, Properties)
+```
+
+### What to Edit vs Generated Content
+
+- Main firmware code: `backup files/project_22/hello_world/src/`
+- Main host app code: `backup files/WindowsFormsApplication1/WindowsFormsApplication1/`
+- Hardware source-managed files: `backup files/project_22/project_22.srcs/`
+- Usually generated (not source edits): `build/`, `_ide/`, `project_22.runs/`, `project_22.gen/`, `logs/`, `bin/`, `obj/`
+
+The repository still contains previously committed Vivado/Vitis generated outputs under `backup files/project_22/`. Current `.gitignore` rules are configured to prevent newly generated artifacts, caches, and logs from being added going forward.
+
+### Main Files Guide (Open These First)
+
+Use this section as a quick map when browsing the project.
+
+#### Firmware (Vitis Bare-Metal App)
+
+- `backup files/project_22/hello_world/src/helloworld.c`
+  - Main application logic for UART receive/transmit flow and AES hardware register interaction.
+- `backup files/project_22/hello_world/src/platform.c`
+  - Platform initialization and low-level setup helpers used by the firmware app.
+- `backup files/project_22/hello_world/src/platform.h`
+  - Platform declarations/macros shared by firmware source files.
+- `backup files/project_22/hello_world/src/UserConfig.cmake`
+  - Vitis app build configuration (compiler/linker options).
+- `backup files/project_22/hello_world/src/lscript.ld`
+  - Linker script defining firmware memory layout.
+
+#### Hardware Project (Vivado)
+
+- `backup files/project_22/project_22.xpr`
+  - Main Vivado project file (open this in Vivado to load the hardware project).
+- `backup files/project_22/project_22.srcs/`
+  - Source-managed block design/IP source tree.
+- `backup files/project_22/design_1_wrapper.xsa`
+  - Exported hardware handoff used by Vitis platform/application workflows.
+
+#### Host PC Application (C# WinForms)
+
+- `backup files/WindowsFormsApplication1/WindowsFormsApplication1.sln`
+  - Visual Studio solution entry point for the host app.
+- `backup files/WindowsFormsApplication1/WindowsFormsApplication1/Form1.cs`
+  - Main UI/event logic (file loading, validation, serial communication workflow).
+- `backup files/WindowsFormsApplication1/WindowsFormsApplication1/Program.cs`
+  - App startup/entry point.
+- `backup files/WindowsFormsApplication1/WindowsFormsApplication1/WindowsFormsApplication1.csproj`
+  - C# project configuration and target framework details.
+
+#### Test Vectors and Captures
+
+- `samples/uart/key_256.txt`
+  - 256-bit AES key sample input.
+- `samples/uart/plain_text.txt`
+  - 128-bit plaintext sample input.
+- `samples/uart/cipher_text.txt`
+  - Expected ciphertext sample.
+- `samples/uart/output.txt`
+  - Optional UART output capture file.
 
 ## UART Protocol (Implemented)
 
